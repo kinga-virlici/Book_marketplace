@@ -1,0 +1,71 @@
+body { background-color: #f3eaf7;
+}
+
+.navbar{
+    background-color: rgb(170 136 200);
+}
+
+.heading-title {
+    color: #74579f;
+    font-size: 98px;
+    font-weight: 700;
+    text-transform: none;
+    font-style: normal;
+    text-decoration: none;
+    line-height: 1em;
+    letter-spacing: -4px;
+    align-items: center;
+}
+
+.spaced-top-5 {
+    margin-top: 5em;
+}
+
+.spaced-top-2 {
+    margin-top: 2em;
+}
+
+.btn-custom {
+    font-weight: bold;
+    background-color: #a273c3;
+    padding: 10px 40px;
+    border-radius: 20px;
+    border: 2px solid #f8f9fa;
+    color: #f8f9fa;
+}
+
+.btn-custom:hover {
+    background-color: #FFFFFF;
+    color: #616161;
+}
+
+.btn-custom-reverse {
+    font-weight: bold;
+    background-color: #FFFFFF;
+    padding: 10px 40px;
+    border-radius: 20px;
+    border: 2px solid #FFC300;
+    color: #FFC300;
+}
+
+.btn-custom-reverse:hover {
+    background-color: #FFC300;
+    color: #FFFFFF;
+}
+
+.brand-logo {
+    color: #ececed;
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
+a.navbar-brand:hover {
+    color: #7D3C98;
+}
+
+a.nav-link {
+    color: #fff!important;
+}
+img.product-image {
+    height: 300px;
+}

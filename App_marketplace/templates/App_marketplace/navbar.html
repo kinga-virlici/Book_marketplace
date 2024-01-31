@@ -1,0 +1,29 @@
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid container">
+    <a class="navbar-brand brand-logo" href="/">KINGA'S BOOKSTORE</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="d-flex">
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+          <a class="nav-link active" aria-current="page" href="/products">Products</a>
+          <a class="nav-link active" aria-current="page" href="/contact">Contact</a>
+          {% if user.is_authenticated %}
+            <a class="nav-link" href="/logout" title="Logout">
+              <i class="fa-solid fa-sign-out-alt"></i> <!-- Icon pentru logout -->
+            </a>
+          {% else %}
+            <a class="nav-link" href="/login" title="Login">
+              <i class="fa-solid fa-sign-in-alt"></i> <!-- Icon pentru login -->
+            </a>
+          {% endif %}
+          <a class="nav-link" href="/cart"><i class="fa-solid fa-basket-shopping"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+{% endblock %}

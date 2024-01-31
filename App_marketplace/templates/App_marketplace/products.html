@@ -1,0 +1,51 @@
+{% extends "App_marketplace/base.html" %}
+{% block content %}
+<div class="container">
+    <h2 style="text-align: center;
+    font-size: 70px;
+    font-weight: 700;
+    text-transform: none;
+    font-style: normal;
+    color: #6d3bc4;
+    text-decoration: none;
+    line-height: 1em;
+    letter-spacing: -3px;
+    margin-top: 50px;
+    margin-bottom: 50px;">PRODUCTS</h2>
+    <div class="container">
+        <div class="row">
+         {% for product in products %}
+             <div class="col-4 mb-5">
+                   <div class="card">
+                      {% if product.image and product.image.url %}
+                        <img class="product-image" src="{{ product.image.url }}" alt="{{ product.name }} Image">
+                      {% else %}
+                        <p>Image not available</p>
+                      {% endif %}
+
+                      <div class="card-body">
+                          <h5 class="card-title">{{ product.title }}</h5>
+                            <p class="card-title">{{ product.author }}</p>
+                            <p class="card-text">Pret: {{ product.price }} euro</p>
+
+                          <div class="row spaced-top-2">
+                              <div class="col">
+                                  <a href="/product/{{ product.id }}">
+                                    <button class="btn-custom">Details</button>
+                                </a>
+                          </div>
+                          <div class="col">
+                              {% if user %}
+                                <a href="#">
+                                    <button class="btn-custom-reverse">Add</button>
+                                </a>
+                            {% endif %}
+                          </div>
+                      </div>
+                      </div>
+                    </div>
+            </div>
+        {% endfor %}
+        </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "App_marketplace/base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="col">
+            <img src="{{ product.image.url }}" alt="{{ product.name }} Image" class="img-fluid">
+        </div>
+        <div class="col">
+            <div class="row">
+                <h5 class="card-title">{{ product.title }} | <span class="card-title text-danger">Author: {{ product.author }} </span></h5>
+                <h5 class="text-success ">Price: {{product.price}} euro </h5>
+                <p class="card-text"><p> {{product.description}}</p>
+                <p class="card-text.text-black-50"><small>Available: {{ product.quantity }} </small></p>
+            </div>
+            {% if user %}
+                <a href="#">
+                    <button class="btn-custom-reverse spaced-top-2">Add to cart</button>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
