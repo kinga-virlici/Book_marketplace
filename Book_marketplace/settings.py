@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'App_marketplace',
+    'App_marketplace',  # numele aplicatiei
+    'account',  # numele aplicatie create prin care implementez o noua functionalitate
 ]
 
 MIDDLEWARE = [
@@ -116,12 +117,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 SESSION_COOKIE_NAME = 'my_session'
 SESSION_COOKIE_AGE = 604800 # o saptamana in secunde
 SESSION_SAVE_EVERY_REQUEST = True
+
+LOGIN_REDIRECT_URL = "/" # ne redirectioneaza pe pagina principala
+LOGOUT_REDIRECT_URL = "/" # ne redirectioneaza pe pagina principala
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
