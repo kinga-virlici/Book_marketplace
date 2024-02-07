@@ -28,7 +28,7 @@ class OrderItemForm(forms.ModelForm):
 class MesajForm(forms.ModelForm):
     class Meta:
         model = Mesaj
-        fields = ['name', 'surname', 'email', 'phone', 'message']
+        fields = ['name', 'email', 'phone', 'message']
 
 
 class RegisterForm(UserCreationForm): # aici am definit o clasa cu ajutorul caruia putem gestiona formularul pt register

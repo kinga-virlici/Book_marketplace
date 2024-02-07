@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views import View
+
 from .models.product import Product
 from .models.order import Order
 from .models.order import OrderItem
@@ -10,10 +11,12 @@ from django.http import JsonResponse
 from django.urls import reverse
 from django.db.models import F
 from django.views.generic import ListView
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.views import LoginView as AuthLoginView, LogoutView as AuthLogoutView
 from django.contrib.auth import authenticate, login
 from account.forms import RegisterForm
+from django.http import HttpResponse
+import sys
 
 
 def home_view(request):
@@ -35,7 +38,7 @@ def product_detail(request, product_id): # functia care ne afiseaza informatii d
     return render(request, 'App_marketplace/product.html', {'product': product})
 
 
-def upload_product(request): # functie cu ajutorul caruia putem incarca produse in aplicatia noastra folosind un sablon, pagina upload_product.html
+def upload_product(request): # functie cu ajutorul careia putem incarca produse in aplicatia noastra folosind un sablon, pagina upload_product.html
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
@@ -145,22 +148,62 @@ def delete_product(request, product_id):
     else:
         return JsonResponse({'status': 'error', 'message': 'Metoda solicitată nu este permisă'})
 
+#Varianta1
 
-def contact(request):
-    if request.method == 'POST':
+
+class MessageView(View):
+    def get(self, request):
+        form = MesajForm()
+
+        return render(request, 'App_marketplace/contact.html', {'form': form})
+
+
+    def post(self, request):
         form = MesajForm(request.POST)
         if form.is_valid():
             mesaj_nou = form.save(commit=False)
             mesaj_nou.status = 'necitit'
             mesaj_nou.save()
             return redirect('/')  # Redirectionam la pagina de home
-    else:
-        form = MesajForm()
+        else:
+            return render(request, 'App_marketplace/contact.html', {'form': form})
+# Varianta 2.1
+# class MessageView(View):
+#     def get(self, request):
+#         form = MesajForm()
+#         return render(request, 'App_marketplace/contact.html', {'form': form})
+#
+#     def post(self,request):
+#         if request.method == 'POST':
+#             form = MesajForm(request.POST)
+#             if form.is_valid():
+#                 mesaj_nou = form.save(commit=False)
+#                 mesaj_nou.status = 'necitit'
+#                 mesaj_nou.save()
+#                 return redirect('/')  # Redirectionam la pagina de home
+#         else:
+#             form = MesajForm()
+#
+#         return render(request, 'App_marketplace/contact.html', {'form': form})
 
-    return render(request, 'App_marketplace/contact.html', {'form': form})
+# Varianta 2.2
+# class MessageView(View):
+#     def get(self, request):
+#         # Handle GET requests (display the contact form)
+#         return render(request, 'App_marketplace/contact.html')
+#
+#     def post(self, request):
+#         # Handle POST requests (process form submission)
+#         # Example logic to process form data and save it to the database
+#         fullname = request.POST.get('fullname')
+#         email = request.POST.get('email')
+#         phone = request.POST.get('phone')
+#         message = request.POST.get('message')
+#         # Perform any additional processing, such as saving to the database
+#         return HttpResponse('Form submitted successfully')
 
 
-#in acest fisier vom crea clase, metode sau functii cu ajutorul carora putem gestiona cererile HTTP ptimite de la utilizator
+#in acest fisier vom crea clase, metode sau functii cu ajutorul carora putem gestiona cererile HTTP primite de la utilizator
 
 class LoginView(AuthLoginView):          #aceasta clasa moesteneste clasa AuthLoginView() si ne ofera functionalitatea de login,
     template_name = 'account/login.html' #aceasta clasa ne ofera sablonul personalizat pt pagina de login a aplicatiei

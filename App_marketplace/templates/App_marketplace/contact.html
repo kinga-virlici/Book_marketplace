@@ -18,11 +18,12 @@
       <div class="col-12 col-lg-9">
         <div class="bg-white border rounded shadow-sm overflow-hidden">
 
-          <form action="#!">
+            <form action="{% url 'App_marketplace:contact' %}" method="post">
+                 {% csrf_token %}
             <div class="row gy-4 gy-xl-5 p-4 p-xl-5">
               <div class="col-12">
-                <label for="fullname" class="form-label">Full Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="fullname" name="fullname" value="" required>
+                <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="name" name="name" value="" required>
               </div>
               <div class="col-12 col-md-6">
                 <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
@@ -36,7 +37,7 @@
                 </div>
               </div>
               <div class="col-12 col-md-6">
-                <label for="phone" class="form-label">Phone Number</label>
+                <label for="phone" class="form-label">Phone</label>
                 <div class="input-group">
                   <span class="input-group-text">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
