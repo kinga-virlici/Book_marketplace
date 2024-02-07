@@ -6,7 +6,7 @@ _Book_marketplace_ este un magazin online cu și despre cărți, dezvoltat folos
 _Book_marketplace_ este o platformă online unde utilizatorii pot achiziționa cărți și pot lăsa recenzii doar dacă sunt autentificați. Utilizatorii pot naviga prin pagina de produse, pot accesa detalii despre produsele de interes, pot adăuga recenzii sau comentarii referitoare la cărțile preferate, pot trimite mesaje administratorului platformei, pot adăuga produse in coșul de cumparături și pot trimite comanda rapid și usor.
 
 ## 2.  Screenshot Book_marketplace homepage
-![Alt Text](photo_marketplace/home.jpg)
+![Alt Text](photo_marketplace/home.png)
 
 ## 3. Tehnologii & Tool-uri utilizate
 
