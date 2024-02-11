@@ -1,11 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views import View
-
 from .models.product import Product
 from .models.order import Order
 from .models.order import OrderItem
-from .models.mesage import Mesaj
 from .forms import OrderItemForm, ProductForm, MesajForm
 from django.http import JsonResponse
 from django.urls import reverse
@@ -15,8 +13,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.views import LoginView as AuthLoginView, LogoutView as AuthLogoutView
 from django.contrib.auth import authenticate, login
 from account.forms import RegisterForm
-from django.http import HttpResponse
-import sys
+from .forms import BookReviewForm
 
 
 def home_view(request):
@@ -27,7 +24,7 @@ class ProductListView(ListView): # clasa cu ajutorul caruia afisam o lista de ob
     model = Product
     template_name = 'App_marketplace/products.html'
 
-    def get_context_data(self, **kwargs): # metoda cu ajutorul careia furnizam date suplimentare  catre sablon, pagina products.html
+    def get_context_data(self, **kwargs): # furnizam date suplimentare  catre sablon, pagina products.html
         context = super().get_context_data(**kwargs)
         context['products'] = context['object_list']
         return context
@@ -63,12 +60,12 @@ def add_to_cart(request, product_id): # functie cu ajutorul cauia putem adauga p
         )
 
         if created:
-            messages.success(request, f"{product.name} a fost adăugat în coș.")
+            messages.success(request, f"{product.title} a fost adăugat în coș.")
         else:
             # Daca OrderItem exista deja, vom actualiza cantitatea
             order_item.quantity = F('quantity') + 1
             order_item.save()
-            messages.info(request, f"Cantitatea pentru {product.name} a fost actualizată în coș.")
+            messages.info(request, f"Cantitatea pentru {product.title} a fost actualizată în coș.")
 
         # Redirectionam catre pagina de shopping cart
         return redirect(reverse('App_marketplace:cart'))
@@ -79,7 +76,7 @@ def add_to_cart(request, product_id): # functie cu ajutorul cauia putem adauga p
 
 
 @login_required
-def create_order(request): # functie cu ajutorul cauia putem crea o comanda
+def create_order(request): # functie cu ajutorul careia putem crea o comanda
     form = OrderItemForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
@@ -130,7 +127,7 @@ def shopping_cart(request):
 
     context = {
         'order_items': order_items,
-        'total_cumparaturi': order_total,
+        'order_total': order_total,
     }
 
     return render(request, 'App_marketplace/cart.html', context)
@@ -147,8 +144,6 @@ def delete_product(request, product_id):
             return JsonResponse({'status': 'error', 'message': 'Produsul nu a fost găsit în coș'})
     else:
         return JsonResponse({'status': 'error', 'message': 'Metoda solicitată nu este permisă'})
-
-#Varianta1
 
 
 class MessageView(View):
@@ -167,43 +162,9 @@ class MessageView(View):
             return redirect('/')  # Redirectionam la pagina de home
         else:
             return render(request, 'App_marketplace/contact.html', {'form': form})
-# Varianta 2.1
-# class MessageView(View):
-#     def get(self, request):
-#         form = MesajForm()
-#         return render(request, 'App_marketplace/contact.html', {'form': form})
-#
-#     def post(self,request):
-#         if request.method == 'POST':
-#             form = MesajForm(request.POST)
-#             if form.is_valid():
-#                 mesaj_nou = form.save(commit=False)
-#                 mesaj_nou.status = 'necitit'
-#                 mesaj_nou.save()
-#                 return redirect('/')  # Redirectionam la pagina de home
-#         else:
-#             form = MesajForm()
-#
-#         return render(request, 'App_marketplace/contact.html', {'form': form})
-
-# Varianta 2.2
-# class MessageView(View):
-#     def get(self, request):
-#         # Handle GET requests (display the contact form)
-#         return render(request, 'App_marketplace/contact.html')
-#
-#     def post(self, request):
-#         # Handle POST requests (process form submission)
-#         # Example logic to process form data and save it to the database
-#         fullname = request.POST.get('fullname')
-#         email = request.POST.get('email')
-#         phone = request.POST.get('phone')
-#         message = request.POST.get('message')
-#         # Perform any additional processing, such as saving to the database
-#         return HttpResponse('Form submitted successfully')
 
 
-#in acest fisier vom crea clase, metode sau functii cu ajutorul carora putem gestiona cererile HTTP primite de la utilizator
+#aici vom crea clase si functii cu ajutorul carora putem gestiona cererile HTTP primite de la utilizator
 
 class LoginView(AuthLoginView):          #aceasta clasa moesteneste clasa AuthLoginView() si ne ofera functionalitatea de login,
     template_name = 'account/login.html' #aceasta clasa ne ofera sablonul personalizat pt pagina de login a aplicatiei
@@ -238,3 +199,14 @@ def register(request):
             return redirect('/')
 
     return render(request, "registration/login.html", {})
+
+
+# def book_review(request):
+#     if request.method == 'POST':
+#         form = BookReviewForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/')
+#     else:
+#         form = BookReviewForm()
+#     return render(request, 'book_review.html', {'form': form})

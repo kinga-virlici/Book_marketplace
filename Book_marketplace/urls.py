@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('django.contrib.auth.urls')),
     path('', include('App_marketplace.urls')),
     path('', include('account.urls')),
+    path('', include('book_review.urls'))
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

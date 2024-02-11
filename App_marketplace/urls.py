@@ -1,9 +1,5 @@
-# from django.urls import path
-# from App_marketplace.views import home_view, contact, ProductListView, product_detail, upload_product, add_to_cart
-# from App_marketplace.views import delete_product, shopping_cart, finalizeaza_comanda
-# from .views import LoginView, register, MessageView
-
 from django.urls import path
+
 from App_marketplace.views import (
     home_view,
     ProductListView,
@@ -15,9 +11,8 @@ from App_marketplace.views import (
     finalizeaza_comanda,
     LoginView,
     register,
-    MessageView
+    MessageView,
 )
-
 
 
 # in acest fisier definim rutele specifice aplicatiei
@@ -36,4 +31,4 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('register/', register, name='register'),
 
-    ]
+]

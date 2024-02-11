@@ -1,4 +1,6 @@
 from django import forms
+
+from book_review.models.book_review import BookReview
 from .models.product import Product
 from .models.order import OrderItem
 from .models.mesage import Mesaj
@@ -52,3 +54,9 @@ class RegisterForm(UserCreationForm): # aici am definit o clasa cu ajutorul caru
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
+
+
+class BookReviewForm(forms.ModelForm):
+    class Meta:
+        model = BookReview
+        fields = ['reviewer_name', 'book_title', 'image', 'review_content']

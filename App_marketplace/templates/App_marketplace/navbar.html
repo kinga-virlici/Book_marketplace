@@ -9,11 +9,11 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
-          <a class="nav-link active" aria-current="page" href="/products">Products</a>
-          <a class="nav-link active" aria-current="page" href="/contact">Book reviews</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'App_marketplace:products' %}">Products</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'book_review:book_review' %}">Book reviews</a>
           <a class="nav-link active" aria-current="page" href="/contact">Contact</a>
           {% if user.is_authenticated %}
-            <a class="nav-link" href="/logout" title="Logout">
+            <a class="nav-link" href="/logout" title="Logout"> Hi, {{user.username}}
               <i class="fa-solid fa-sign-out-alt"></i> <!-- Icon pentru logout -->
             </a>
           {% else %}

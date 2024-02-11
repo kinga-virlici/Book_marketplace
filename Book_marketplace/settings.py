@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'App_marketplace',  # numele aplicatiei
+    'App_marketplace',  # numele aplicatiei principale
     'account',  # numele aplicatie create prin care implementez o noua functionalitate
+    'book_review',
 ]
 
 MIDDLEWARE = [

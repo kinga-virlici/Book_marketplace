@@ -35,11 +35,11 @@
                                 </a>
                           </div>
                           <div class="col">
-                              {% if user %}
-                                <a href="#">
-                                    <button class="btn-custom-reverse">Add</button>
+                              {% if user.is_authenticated %}
+                                <a href="{% url 'App_marketplace:add_to_cart' product_id=product.id %}">
+                                    <button class="btn-custom-reverse spaced-top-2">Add</button>
                                 </a>
-                            {% endif %}
+                              {% endif %}
                           </div>
                       </div>
                       </div>

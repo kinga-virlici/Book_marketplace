@@ -1,0 +1,12 @@
+{% extends "App_marketplace/base.html" %}
+
+{% block content %}
+    <h1>Book review</h1>
+    <form method="post" enctype="multipart/form-data">-->
+        {%  csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Book review">
+    </form>
+
+{% endblock %}
+
