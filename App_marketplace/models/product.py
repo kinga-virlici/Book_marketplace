@@ -1,5 +1,4 @@
 from django.db import models
-from django.conf import settings
 
 
 class Product(models.Model): # clasa cu ajutorul careia definim caracteristicile unui produs

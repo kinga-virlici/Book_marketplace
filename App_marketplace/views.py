@@ -13,7 +13,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.views import LoginView as AuthLoginView, LogoutView as AuthLogoutView
 from django.contrib.auth import authenticate, login
 from account.forms import RegisterForm
-from .forms import BookReviewForm
 
 
 def home_view(request):
@@ -200,13 +199,3 @@ def register(request):
 
     return render(request, "registration/login.html", {})
 
-
-# def book_review(request):
-#     if request.method == 'POST':
-#         form = BookReviewForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/')
-#     else:
-#         form = BookReviewForm()
-#     return render(request, 'book_review.html', {'form': form})

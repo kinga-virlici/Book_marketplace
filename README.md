@@ -18,7 +18,7 @@ _Book_marketplace_ este o platformă online unde utilizatorii pot achiziționa c
 
 📌 SQLiteStudio: baza de date;
 
-📌 HTML, CSS: crearea paginii web și stilizarea acestora;
+📌 HTML, CSS, JS: crearea paginii web și stilizarea acestora;
 
 📌 Canva: pentru prezentare;
 

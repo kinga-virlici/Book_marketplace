@@ -1,5 +1,4 @@
 from django import forms
-
 from book_review.models.book_review import BookReview
 from .models.product import Product
 from .models.order import OrderItem

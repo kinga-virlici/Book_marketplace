@@ -1,0 +1,30 @@
+{% extends "App_marketplace/base.html" %}
+
+{% block content %}
+
+
+<div class="container" xmlns="http://www.w3.org/1999/html">
+    <h1>Book review list</h1>
+  <div class="row">
+      {% for review in reviews %}
+          <div class="col-12">
+              {{ review.reviewer_name }}</br>
+              {{ review.book_title }}</br>
+          </div>
+        <div class="col-4">
+            {% if review.image %}
+                <img src="{{ review.image.url }}" alt="{{ review.book_title }} Image" class="img-fluid">
+            {% endif %}
+            </br>
+            {{ review.review_date }}
+        </div>
+      <div class="col-8">
+          {{ review.review_content }}
+      </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+{% endblock %}
+
