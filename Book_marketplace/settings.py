@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'App_marketplace',  # numele aplicatiei principale
-    'account',  # numele aplicatie create prin care implementez o noua functionalitate
-    'book_review',
+    'account',  # numele aplicatie create prin care implementez o noua functionalitate: register și login
+    'book_review', # numele aplicatiei prin care vom putea adauga recenzii despre carti
 ]
 
 MIDDLEWARE = [

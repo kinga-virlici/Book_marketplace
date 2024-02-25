@@ -18,7 +18,7 @@ class BookReviewView(View):
         form = BookReviewForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('/')  # Replace with your success URL name
+            return redirect('/')
         return render(request, self.template_name, {'form': form})
 
 

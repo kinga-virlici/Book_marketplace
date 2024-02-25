@@ -1,0 +1,10 @@
+{% extends "App_marketplace/base.html" %}
+{% block content %}
+<br><br><br>
+<span class="cart-text">Comanada a fost plasată cu succes!<br>Order placed successfully!<br><br></span>
+
+<a href="{% url 'App_marketplace:products' %}">
+                    <button class="btn-custom spaced-top-2">Continue Shopping</button>
+                </a>
+
+{% endblock %}

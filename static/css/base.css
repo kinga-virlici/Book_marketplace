@@ -69,3 +69,21 @@ a.nav-link {
 img.product-image {
     height: 300px;
 }
+
+.review-title {
+    color: #74579f;
+}
+
+.contact-button {
+    background-color: #74579f!important;
+    color: #fff!important;
+}
+
+.cart-text {
+    color: #74579f !important;
+    font-size: 20px;
+}
+
+.price-text {
+    color:
+}

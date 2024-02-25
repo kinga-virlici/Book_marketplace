@@ -6,7 +6,7 @@
     font-weight: 700;
     text-transform: none;
     font-style: normal;
-    color: #6d3bc4;
+    color: #74579f;
     text-decoration: none;
     line-height: 1em;
     letter-spacing: -3px;
@@ -18,7 +18,7 @@
              <div class="col-4 mb-5">
                    <div class="card">
                       {% if product.image and product.image.url %}
-                        <img class="product-image" src="{{ product.image.url }}" alt="{{ product.name }} Image">
+                        <img class="product-image" src="{{ product.image.url }}" alt="{{ product.name }} Image" width="300px" height="300px">
                       {% else %}
                         <p>Image not available</p>
                       {% endif %}
@@ -37,7 +37,7 @@
                           <div class="col">
                               {% if user.is_authenticated %}
                                 <a href="{% url 'App_marketplace:add_to_cart' product_id=product.id %}">
-                                    <button class="btn-custom-reverse spaced-top-2">Add</button>
+                                    <button class="btn-custom">Add</button>
                                 </a>
                               {% endif %}
                           </div>

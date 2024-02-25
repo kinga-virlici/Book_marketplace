@@ -14,8 +14,9 @@
             line-height: 1em;
             letter-spacing: -3px;
             margin-top: 50px;
-            margin-bottom: 50px;">Shopping Cart</h1></br></br></br></br>
-
+            margin-bottom: 50px;
+            color: #74579f;">Shopping Cart</h1></br></br></br></br>
+{% if order_items|length > 0 %}
                 <table class="table">
                     <thead>
                         <tr>
@@ -27,6 +28,7 @@
                         </tr>
                     </thead>
                     <tbody>
+
                         {% for order_item in order_items %}
                             <tr>
                                 <td>{{ order_item.product.title }}</td>
@@ -38,6 +40,7 @@
                                 </td>
                             </tr>
                         {% endfor %}
+
                     </tbody>
                     <tfoot>
                         <tr>
@@ -47,15 +50,38 @@
                         </tr>
                     </tfoot>
                 </table></br>
+
             <div class="d-flex justify-content-between">
                 <a href="{% url 'App_marketplace:products' %}">
                     <button class="btn-custom spaced-top-2">Continue Shopping</button>
                 </a>
-                <form method="post" action="{% url 'App_marketplace:finalizeaza_comanda' %}">
+
+                <form method="post" action="{% url 'App_marketplace:order_complete' %}">
                     {% csrf_token %}
                     <button type="submit" class="btn-custom spaced-top-2">Submit Order</button>
                 </form>
+
             </div>
+            {% else %}
+                {% if user.is_authenticated %}
+            <span class="cart-text">Coșul de cumpărături este gol!<br>Shopping cart is empty!</span>
+
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'App_marketplace:products' %}">
+                    <button class="btn-custom spaced-top-2">Continue Shopping</button>
+                </a>
+
+            </div>
+                {% else %}
+                       <span class="cart-text"> Coșul de cumpărături este gol! Pentru a putea adăuga produse în coș este necesară autentificarea! <br>Shopping cart is empty! To be able to add products to the cart, login is required!</span>
+                 <a class="text-primary" href="/login" title="Login" ><br><br>
+                  Login
+                </a>
+                {% endif %}
+
+            {% endif %}
+
+
         </div>
     </div>
 </div>

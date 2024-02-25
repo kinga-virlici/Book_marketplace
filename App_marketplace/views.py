@@ -19,7 +19,7 @@ def home_view(request):
     return render(request, 'App_marketplace/home.html')
 
 
-class ProductListView(ListView): # clasa cu ajutorul caruia afisam o lista de obiecte
+class ProductListView(ListView): # clasa cu ajutorul careia afisam o lista de obiecte
     model = Product
     template_name = 'App_marketplace/products.html'
 
@@ -46,7 +46,7 @@ def upload_product(request): # functie cu ajutorul careia putem incarca produse 
     return render(request, 'App_marketplace/upload_product.html', {'form': form})
 
 @login_required
-def add_to_cart(request, product_id): # functie cu ajutorul cauia putem adauga produse in cosul de cumparaturi
+def add_to_cart(request, product_id): # functie cu ajutorul careia putem adauga produse in cosul de cumparaturi
     try:
         # Obtine produsul pe baza id-ului
         product = get_object_or_404(Product, id=product_id)
@@ -103,7 +103,7 @@ def create_order(request): # functie cu ajutorul careia putem crea o comanda
     return render(request, 'App_marketplace/cart.html', context)
 
 
-def finalizeaza_comanda(request):
+def order_complete(request):
     if request.method == 'POST':
 
         order_items = OrderItem.objects.filter(user=request.user, ordered=False)
@@ -114,15 +114,24 @@ def finalizeaza_comanda(request):
         order_items.update(ordered=True)
 
         messages.success(request, 'Comanda a fost plasată cu succes!')
-        return redirect(reverse('App_marketplace:home'))
+        return redirect(reverse('App_marketplace:order_confirm'))
 
     return redirect(reverse('App_marketplace:home'))
 
 
-def shopping_cart(request):
-    order_items = OrderItem.objects.filter(user=request.user, ordered=False)
+def order_confirm(request):
+    return render(request, 'App_marketplace/order_confirm.html')
 
-    order_total = sum(item.get_final_price() for item in order_items)
+
+def shopping_cart(request):
+
+    if request.user.is_authenticated:
+        order_items = OrderItem.objects.filter(user=request.user, ordered=False)
+
+        order_total = sum(item.get_final_price() for item in order_items)
+    else:
+        order_items = []
+        order_total = 0
 
     context = {
         'order_items': order_items,

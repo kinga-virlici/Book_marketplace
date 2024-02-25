@@ -3,7 +3,7 @@ _Book_marketplace_ este un magazin online cu și despre cărți, dezvoltat folos
 
 ## 1. **Descriere**
 
-_Book_marketplace_ este o platformă online unde utilizatorii pot achiziționa cărți și pot lăsa recenzii doar dacă sunt autentificați. Utilizatorii pot naviga prin pagina de produse, pot accesa detalii despre produsele de interes, pot adăuga recenzii sau comentarii referitoare la cărțile preferate, pot trimite mesaje administratorului platformei, pot adăuga produse in coșul de cumparături și pot trimite comanda rapid și usor.
+_Book_marketplace_ este o platformă online unde utilizatorii pot achiziționa cărți doar dacă sunt autentificați. Utilizatorii pot naviga prin pagina de produse, pot accesa detalii despre produsele de interes, pot adăuga recenzii sau comentarii referitoare la cărțile preferate, pot trimite mesaje administratorului platformei, pot adăuga produse in coșul de cumparături și pot trimite comanda rapid și usor.
 
 ## 2.  Screenshot Book_marketplace homepage
 ![Alt Text](photo_marketplace/home.png)
@@ -43,9 +43,9 @@ _Book_marketplace_ este o platformă online unde utilizatorii pot achiziționa c
 
 ### source/venv/bin/activate
 
-* trebuie să ne asigurăm că avem instalat:
+* trebuie să ne asigurăm înainte că avem instalat:
 
-### pip install django
+### pip install -r requirements.txt
 
 * rularea aplicației se va face folosind comanda:
 

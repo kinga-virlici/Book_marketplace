@@ -3,17 +3,17 @@
 {% block content %}
 
 
-<div class="container" xmlns="http://www.w3.org/1999/html">
-    <h1>Book review list</h1>
-  <div class="row">
+<div class="container mt-4" xmlns="http://www.w3.org/1999/html">
+    <h1 class="review-title" style="text-align: center;">BOOK REVIEW LIST</h1>
+  <div class="row mt-5">
       {% for review in reviews %}
-          <div class="col-12">
-              {{ review.reviewer_name }}</br>
-              {{ review.book_title }}</br>
+          <div class="col-12 mb-5">
+              Added by: {{ review.reviewer_name }}</br>
+              <strong style="color: #74579f;">{{ review.book_title }}</strong><br>
           </div>
-        <div class="col-4">
+        <div class="col-4 mb-3">
             {% if review.image %}
-                <img src="{{ review.image.url }}" alt="{{ review.book_title }} Image" class="img-fluid">
+                <img src="{{ review.image.url }}" alt="{{ review.book_title }} Image" class="img-fluid" width="200px" height="200px">
             {% endif %}
             </br>
             {{ review.review_date }}
