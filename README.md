@@ -29,7 +29,7 @@ _Book_marketplace_ este o platformă online unde utilizatorii pot achiziționa c
 
 * clonează acest repository local în folderul dorit:
 
-### git clone https://github.com/kinga-virlici/Book_marketplace
+### git clone https://github.com/kinga-virlici/Book_marketplace.git
 
 * crează un mediu virtual:
 
