@@ -2,7 +2,7 @@ body { background-color: #f3eaf7;
 }
 
 .navbar{
-    background-color: rgb(170 136 200);
+    background-color: rgb(170 136 200) ! important;
 }
 
 .heading-title {

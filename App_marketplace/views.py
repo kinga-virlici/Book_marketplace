@@ -5,13 +5,13 @@ from .models.product import Product
 from .models.order import Order
 from .models.order import OrderItem
 from .forms import OrderItemForm, ProductForm, MesajForm
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.db.models import F
 from django.views.generic import ListView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.views import LoginView as AuthLoginView, LogoutView as AuthLogoutView
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from account.forms import RegisterForm
 
 
@@ -178,8 +178,11 @@ class LoginView(AuthLoginView):          #aceasta clasa moesteneste clasa AuthLo
     template_name = 'account/login.html' #aceasta clasa ne ofera sablonul personalizat pt pagina de login a aplicatiei
 
 
-class LogoutView(AuthLogoutView):         #aceasta clasa moesteneste clasa AuthLogoutView() si ne ofera functionalitatea de logout
-    template_name = 'account/logout.html' #aceasta clasa ne ofera sablonul personalizat pt pagina de logout a aplicatiei
+class LogoutView(AuthLogoutView):
+    def get_next_page(self):
+        # user logout before redirect
+        logout(self.request)
+        return HttpResponseRedirect(reverse('/'))
 
 
 def register(request):
